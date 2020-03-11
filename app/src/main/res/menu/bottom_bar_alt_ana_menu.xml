@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_navigation_haberler"
+        android:icon="@drawable/ic_public_black_24dp"
+        android:title="Haberler" />
+    <item
+        android:id="@+id/item_navigation_eczaneler"
+        android:icon="@drawable/ic_local_hospital_black_24dp"
+        android:title="Eczaneler" />
+    <item
+        android:id="@+id/item_navigation_profil"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="Profil" />
+</menu>
