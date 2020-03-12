@@ -9,14 +9,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.mghg.mtek.fragments.FragmentEczane;
 import com.mghg.mtek.fragments.FragmentHaberler;
-import com.mghg.mtek.fragments.FragmentLogin;
 import com.mghg.mtek.fragments.FragmentProfil;
-import com.mghg.mtek.fragments.FragmentSingIn;
 
 public class MainActivity extends AppCompatActivity {
     Veritabani db;
@@ -24,12 +21,17 @@ public class MainActivity extends AppCompatActivity {
     private Fragment geciciFragment;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    String kullaniciAdi, sifre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         db = new Veritabani(getApplicationContext());
+
+        sharedPreferences = getSharedPreferences("girisBilgisi",MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         bottomNavigationAna = findViewById(R.id.bottom_navigation_ana);
         getSupportFragmentManager().beginTransaction().add(R.id.framlayout__ana, new FragmentHaberler()).commit();
@@ -51,30 +53,5 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.ust_sag_menu, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_cikis:
-                // Action goes here
-                sharedPreferences = getSharedPreferences("girisBilgisi",MODE_PRIVATE);
-                editor = sharedPreferences.edit();
-
-                editor.putString("kullaniciAdi","boş");
-                editor.putString("sifre","boş");
-                editor.commit();
-
-                startActivity(new Intent(getApplicationContext(),Giris.class));
-                finish();
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }
